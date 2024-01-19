@@ -45,7 +45,7 @@ class Generator
      * @param array   $words List of words.
      * @param integer $size  Rows/columns.
      */
-    public function __construct(array $words, $size = 15, Alphabet $alphabet = null)
+    public function __construct(array $words, $size = 15, Alphabet $alphabet = null, $reverseWords = false)
     {
         // validate the grid size
         if (!is_numeric($size) || $size < 1) {
@@ -64,7 +64,12 @@ class Generator
             $word = Utils::uppercaseString($word);
         });
 
-        // randomise words
+        // reverse words if specified
+        if ($reverseWords) {
+            $words = array_map('strrev', $words);
+        }
+
+        // randomize words
         shuffle($words);
 
         // setup instance variables
@@ -72,7 +77,18 @@ class Generator
         $this->size = $size;
         $this->wordList = new WordList;
         $this->alphabet = ($alphabet) ? $alphabet : new Alphabet\English;
+
+        // Optionally, you can set the alphabet dynamically if provided
+        if ($alphabet) {
+            $this->setAlphabet($alphabet);
+        }
     }
+
+    protected function setAlphabet(Alphabet $alphabet)
+    {
+        $this->alphabet = $alphabet;
+    }
+
 
     /**
      * Generate the puzzle.
@@ -159,7 +175,8 @@ class Generator
         $wordArray = Utils::stringToArray($word);
 
         foreach ($wordArray as $letter) {
-            if ($this->grid[$row][$col] !== null &&
+            if (
+                $this->grid[$row][$col] !== null &&
                 $this->grid[$row][$col] !== $letter
             ) {
                 return false;
@@ -201,7 +218,8 @@ class Generator
         $wordArray = Utils::stringToArray($word);
 
         foreach ($wordArray as $letter) {
-            if ($this->grid[$row][$col] !== null &&
+            if (
+                $this->grid[$row][$col] !== null &&
                 $this->grid[$row][$col] !== $letter
             ) {
                 return false;
