@@ -1,14 +1,24 @@
 {
-    "name": "xmeltrut/word-search",
+    "name": "sanderspaas/word-search",
     "type": "library",
     "description": "Word search generator.",
-    "homepage": "http://github.com/xmeltrut/WordSearch",
+    "homepage": "https://github.com/SanderSpaas/WordSearch",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Sander Spaas",
+            "email": "sander.spaas@gmail.com"
+        }
+    ],
+    "maintainers": [
         {
             "name": "Chris Worfolk",
             "email": "chris@worfolk.co.uk",
             "homepage": "http://www.worfolk.co.uk"
+        },
+        {
+            "name": "Sander Spaas",
+            "email": "sander.spaas@gmail.com"
         }
     ],
     "autoload": {
