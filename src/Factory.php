@@ -9,13 +9,13 @@ class Factory
      *
      * @param array   $words List of words.
      * @param integer $size  Grid size.
-     * @param string  $lang  Language.
+     * @param Alphabet  $alphabet Alphabet to use.
+     * @param boolean $reverseWords Reverse words.
      * @return Puzzle
      */
-    public static function create(array $words, $size = 15, $lang = 'en')
+    public static function create(array $words, $size = 15, $alphabet, $reverseWords = false)
     {
-        $alphabet = ($lang == 'fi') ? new Alphabet\Finnish : null;
-        $generator = new Generator($words, $size, $alphabet);
+        $generator = new Generator($words, $size, $alphabet, $reverseWords);
         return $generator->generate();
     }
 }

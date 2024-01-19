@@ -10,8 +10,8 @@ class HtmlTransformerTest extends \PHPUnit_Framework_TestCase
     public function testTransform()
     {
         $puzzle = $this->getMockBuilder('\\WordSearch\\Puzzle')
-                       ->disableOriginalConstructor()
-                       ->getMock();
+            ->disableOriginalConstructor()
+            ->getMock();
         $puzzle->method('toArray')->willReturn([['A']]);
         $puzzle->method('getWordList')->willReturn([
             new Word('test1', 1, 1),

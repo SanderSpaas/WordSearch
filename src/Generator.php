@@ -44,6 +44,8 @@ class Generator
      *
      * @param array   $words List of words.
      * @param integer $size  Rows/columns.
+     * @param Alphabet $alphabet Alphabet to use.
+     * @param boolean $reverseWords Reverse words.
      */
     public function __construct(array $words, $size = 15, Alphabet $alphabet = null, $reverseWords = false)
     {
