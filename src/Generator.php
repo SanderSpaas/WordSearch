@@ -68,7 +68,18 @@ class Generator
 
         // reverse words if specified
         if ($reverseWords) {
-            $words = array_map('strrev', $words);
+            $words = array_map(function ($word) {
+                // Split the word into an array of characters
+                $characters = preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
+
+                // Reverse the array of characters
+                $reversedCharacters = array_reverse($characters);
+
+                // Join the characters to form the reversed word
+                $reversedWord = implode('', $reversedCharacters);
+
+                return $reversedWord;
+            }, $words);
         }
 
         // randomize words
