@@ -1,8 +1,8 @@
 {
-    "name": "sanderspaas/word-search",
+    "name": "xmeltrut/word-search",
     "type": "library",
     "description": "Word search generator.",
-    "homepage": "https://github.com/SanderSpaas/WordSearch",
+    "homepage": "https://github.com/xmeltrut/WordSearch",
     "license": "MIT",
     "authors": [
         {
