@@ -6,19 +6,9 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Sander Spaas",
-            "email": "sander.spaas@gmail.com"
-        }
-    ],
-    "maintainers": [
-        {
             "name": "Chris Worfolk",
             "email": "chris@worfolk.co.uk",
             "homepage": "http://www.worfolk.co.uk"
-        },
-        {
-            "name": "Sander Spaas",
-            "email": "sander.spaas@gmail.com"
         }
     ],
     "autoload": {
