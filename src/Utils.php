@@ -69,4 +69,24 @@ class Utils
 
         return strtoupper($str);
     }
+
+    /**
+     * Reverse a string.
+     *
+     * @param string $str
+     * @return string
+     */
+    public static function reverseString($str)
+    {
+        // Split the string into an array of characters
+        $characters = preg_split('//u', $str, -1, PREG_SPLIT_NO_EMPTY);
+
+        // Reverse the array of characters
+        $reversedCharacters = array_reverse($characters);
+
+        // Join the characters to form the reversed string
+        $reversedString = implode('', $reversedCharacters);
+
+        return $reversedString;
+    }
 }
