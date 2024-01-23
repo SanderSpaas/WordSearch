@@ -44,13 +44,16 @@ class HtmlTransformer
     /**
      * Transform the words list.
      *
+     * @param bool $reverseWords Reverse words.
      * @return string
      */
-    public function wordList()
+    public function wordList(bool $reverseWords = false)
     {
-        $html = "<ul>\n";
+        $html = "<ul style='direction: rtl;'>\n";
 
-        foreach ($this->puzzle->getWordList() as $word) {
+        $wordList = $this->puzzle->getWordList($reverseWords);
+
+        foreach ($wordList as $word) {
             $html .= sprintf("<li>%s</li>\n", $word->word);
         }
 
@@ -58,4 +61,5 @@ class HtmlTransformer
 
         return $html;
     }
+
 }
