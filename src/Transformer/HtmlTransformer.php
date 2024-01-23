@@ -59,7 +59,7 @@ class HtmlTransformer
         $html .= ">\n";
 
         foreach ($this->puzzle->getWordList() as $word) {
-            $html .= sprintf("<li>%s</li>\n", $word->word);
+            $html .= sprintf("<li style=\"list-style-type: none;\">%s</li>\n", $word->word);
         }
 
         $html .= "</ul>\n";
