@@ -40,6 +40,11 @@ class Generator
     private $alphabet;
 
     /**
+     * @var boolean Reverse words.
+     */
+    private $reverseWords = false;
+
+    /**
      * Constructor.
      *
      * @param array   $words List of words.
@@ -66,30 +71,16 @@ class Generator
             $word = Utils::uppercaseString($word);
         });
 
-        // reverse words if specified
-        if ($reverseWords) {
-            $words = array_map(function ($word) {
-                // Split the word into an array of characters
-                $characters = preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
-
-                // Reverse the array of characters
-                $reversedCharacters = array_reverse($characters);
-
-                // Join the characters to form the reversed word
-                $reversedWord = implode('', $reversedCharacters);
-
-                return $reversedWord;
-            }, $words);
-        }
-
         // randomize words
         shuffle($words);
+
 
         // setup instance variables
         $this->words = $words;
         $this->size = $size;
         $this->wordList = new WordList;
         $this->alphabet = ($alphabet) ? $alphabet : new Alphabet\English;
+        $this->reverseWords = $reverseWords;
 
         // Optionally, you can set the alphabet dynamically if provided
         if ($alphabet) {
@@ -185,6 +176,9 @@ class Generator
      */
     private function tryWordInRow($word, $row, $col)
     {
+        if ($this->reverseWords) {
+            $word = Utils::reverseString($word);
+        }
         $wordArray = Utils::stringToArray($word);
 
         foreach ($wordArray as $letter) {
@@ -209,8 +203,13 @@ class Generator
      */
     private function insertWordIntoRow($word, $row, $col)
     {
+        // the words are always inserted in the same direction in the word list
         $this->wordList->add($word, ($row + 1), (1 + $col));
 
+        // we will however reverse this word if specified
+        if ($this->reverseWords) {
+            $word = Utils::reverseString($word);
+        }
         $wordArray = Utils::stringToArray($word);
 
         foreach ($wordArray as $letter) {
@@ -228,8 +227,10 @@ class Generator
      */
     private function tryWordInColumn($word, $col, $row)
     {
+        if ($this->reverseWords) {
+            $word = Utils::reverseString($word);
+        }
         $wordArray = Utils::stringToArray($word);
-
         foreach ($wordArray as $letter) {
             if (
                 $this->grid[$row][$col] !== null &&
@@ -252,8 +253,13 @@ class Generator
      */
     private function insertWordIntoColumn($word, $col, $row)
     {
+        // the words are always inserted in the same direction in the word list
         $this->wordList->add($word, ($row + 1), ($col + 1));
 
+        // we will however reverse this word if specified
+        if ($this->reverseWords) {
+            $word = Utils::reverseString($word);
+        }
         $wordArray = Utils::stringToArray($word);
 
         foreach ($wordArray as $letter) {
